@@ -15,8 +15,13 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String placeOrder(@RequestBody OrderRequest orderRequest){
-        orderService.placeOrder(orderRequest);
-        return "Order Placed Successfully";
+    public String placeOrder(@RequestBody OrderRequest orderRequest) throws IllegalAccessException {
+        try{
+            orderService.placeOrder(orderRequest);
+            return "Order Placed Successfully";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+
     }
 }
